@@ -75,7 +75,7 @@ class Flat3dButton extends StatefulWidget {
     double elevation,
     Duration clickDuration,
     MouseCursor mouseCursor,
-    Color textColor,
+    TextStyle? style,
   }) = _Flat3dTextButton;
 
   @override
@@ -171,7 +171,7 @@ class _Flat3dTextButton extends Flat3dButton {
     double elevation = 5.0,
     Duration clickDuration = const Duration(milliseconds: 150),
     MouseCursor mouseCursor = SystemMouseCursors.click,
-    Color textColor = Colors.white,
+    TextStyle? style,
   }) : super(
           key: key,
           onPressed: onPressed,
@@ -182,7 +182,8 @@ class _Flat3dTextButton extends Flat3dButton {
           padding: padding,
           child: Text(
             text,
-            style: TextStyle(color: textColor),
+            textAlign: TextAlign.center,
+            style: style?.copyWith(height: 1.0),
           ),
         );
 }
