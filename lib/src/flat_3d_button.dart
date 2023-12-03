@@ -24,7 +24,7 @@ class Flat3dButton extends StatefulWidget {
   /// Color of the flat button, bottom color is derived from the given color as the shade700
   ///
   /// Defaults to the current [Theme.of(context).colorScheme.primary] color.
-  final MaterialColor? color;
+  final Color? color;
 
   /// Elevation for the flat button.
   ///
@@ -92,8 +92,13 @@ class _Flat3dButtonState extends State<Flat3dButton> {
 
   @override
   Widget build(BuildContext context) {
-    final MaterialColor color = widget.color ??
-        (Theme.of(context).colorScheme.primary as MaterialColor);
+    final color = widget.color ?? Theme.of(context).colorScheme.primary;
+    final shadeColor = Color.fromARGB(
+      color.alpha,
+      (color.red * 0.8).toInt(),
+      (color.green * 0.8).toInt(),
+      (color.blue * 0.8).toInt(),
+    );
     return GestureDetector(
       onTap: widget.onPressed,
       onTapDown: (_) {
@@ -115,7 +120,7 @@ class _Flat3dButtonState extends State<Flat3dButton> {
             color: color,
             border: Border(
               bottom: BorderSide(
-                color: color.shade700,
+                color: shadeColor,
                 width: _elevation,
               ),
             ),
